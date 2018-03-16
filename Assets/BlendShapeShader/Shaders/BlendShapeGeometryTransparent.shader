@@ -1,4 +1,4 @@
-Shader "Custom/BlendShapeGeometry" {
+Shader "Custom/BlendShapeGeometryTransparent" {
     Properties {
         _BumpMap ("Normal Map", 2D) = "bump" {}
         _Color ("Color", Color) = (1,1,1,1)
@@ -17,7 +17,7 @@ Shader "Custom/BlendShapeGeometry" {
     }
     SubShader {
         Tags {
-            "Queue"="Transparent-2" "RenderType"="Opaque"
+            "Queue"="Transparent-2" "RenderType"="Transparent"
         }
         LOD 200
         Pass {
@@ -25,7 +25,8 @@ Shader "Custom/BlendShapeGeometry" {
             Tags {
                 "LightMode"="ForwardBase"
             }
-            
+
+            Blend SrcAlpha OneMinusSrcAlpha
             
             CGPROGRAM
             #pragma vertex vert
@@ -270,7 +271,7 @@ Shader "Custom/BlendShapeGeometry" {
                 float3 emissive = (node_6343*_Emission);
 /// Final Color:
                 float3 finalColor = diffuse + specular + emissive;
-                fixed4 finalRGBA = fixed4(finalColor,1);
+                fixed4 finalRGBA = fixed4(finalColor,_MainTex_var.a*_Color.a);
                 UNITY_APPLY_FOG(i.fogCoord, finalRGBA);
                 return finalRGBA;
             }
@@ -455,7 +456,7 @@ Shader "Custom/BlendShapeGeometry" {
                 float3 diffuse = directDiffuse * diffuseColor;
 /// Final Color:
                 float3 finalColor = diffuse + specular;
-                fixed4 finalRGBA = fixed4(finalColor * 1,0);
+                fixed4 finalRGBA = fixed4(finalColor * 1,_MainTex_var.a*_Color.a);
                 UNITY_APPLY_FOG(i.fogCoord, finalRGBA);
                 return finalRGBA;
             }
