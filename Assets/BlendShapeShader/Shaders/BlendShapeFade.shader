@@ -248,7 +248,6 @@ Shader "Naelstrof/BlendShape Fade" {
             #include "UnityPBSLighting.cginc"
             #include "UnityStandardBRDF.cginc"
             #pragma multi_compile_fwdadd_fullshadows
-            #pragma multi_compile_fwdadd
             #pragma multi_compile_fog
             #pragma target 4.0
             uniform float4 _Color;
