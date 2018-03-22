@@ -117,7 +117,7 @@
             	half NdotL = dot(i.normalDir, lightDirection);
 				NdotL = smoothstep(0, _SmoothStep, NdotL);
 				float4 c;
-				c = tex2D(_MainTex,TRANSFORM_TEX(i.uv0, _MainTex));
+				c = tex2D(_MainTex,TRANSFORM_TEX(i.uv0, _MainTex)) * _Color;
 				c.rgb *= _LightColor0.rgb * (NdotL * attenuation * 2);
 				return c;
             }
@@ -221,7 +221,7 @@
             	half NdotL = dot(i.normalDir, lightDirection);
 				NdotL = smoothstep(0, _SmoothStep, NdotL);
 				float4 c;
-				c = tex2D(_MainTex,TRANSFORM_TEX(i.uv0, _MainTex));
+				c = tex2D(_MainTex,TRANSFORM_TEX(i.uv0, _MainTex)) * _Color;
 				c.rgb *= _LightColor0.rgb * (NdotL * attenuation * 2);
 				return c;
             }
