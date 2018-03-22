@@ -23,8 +23,8 @@
 			half NdotL = dot(s.Normal, lightDir);
 			NdotL = smoothstep(0, _SmoothStep, NdotL);
 			half4 c;
-			c.rgb = s.Albedo * _Color.rgb * _LightColor0.rgb * (NdotL * atten * 2);
-			c.a = s.Alpha * _Color.a;
+			c.rgb = s.Albedo * _LightColor0.rgb * (NdotL * atten * 2);
+			c.a = s.Alpha;
 			return c;
 		}
 

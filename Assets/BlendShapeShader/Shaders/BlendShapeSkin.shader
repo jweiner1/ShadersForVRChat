@@ -268,6 +268,7 @@
             #include "UnityPBSLighting.cginc"
             #include "UnityStandardBRDF.cginc"
             #pragma multi_compile_fog
+            #pragma multi_compile_fwdadd_fullshadows
             #pragma target 4.0
             uniform float4 _Color;
             uniform sampler2D _MainTex; uniform float4 _MainTex_ST;

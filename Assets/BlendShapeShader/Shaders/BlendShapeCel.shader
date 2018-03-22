@@ -117,7 +117,7 @@
             	half NdotL = dot(i.normalDir, lightDirection);
 				NdotL = smoothstep(0, _SmoothStep, NdotL);
 				float4 c;
-				c = tex2D(_MainTex,TRANSFORM_TEX(i.uv0, _MainTex)) * _Color;
+				c = tex2D(_MainTex,TRANSFORM_TEX(i.uv0, _MainTex));
 				c.rgb *= _LightColor0.rgb * (NdotL * attenuation * 2);
 				return c;
             }
@@ -136,6 +136,7 @@
 			#pragma fragment frag
 			#pragma vertex vert
 			#pragma geometry geo
+			#pragma multi_compile_fwdadd_fullshadows
 			#pragma target 4.0
 
 			#include "UnityCG.cginc"
@@ -221,7 +222,7 @@
             	half NdotL = dot(i.normalDir, lightDirection);
 				NdotL = smoothstep(0, _SmoothStep, NdotL);
 				float4 c;
-				c = tex2D(_MainTex,TRANSFORM_TEX(i.uv0, _MainTex)) * _Color;
+				c = tex2D(_MainTex,TRANSFORM_TEX(i.uv0, _MainTex));
 				c.rgb *= _LightColor0.rgb * (NdotL * attenuation * 2);
 				return c;
             }
